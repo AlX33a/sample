@@ -32,11 +32,6 @@ services:
       POSTGRES_DB: "db"
       POSTGRES_USER: "root"
       POSTGRES_PASSWORD: "root"
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready", "-h", "localhost", "-p", "5432"]
-      interval: 10s
-      timeout: 5s
-      retries: 10
 
   front-end:
     image: front-end
