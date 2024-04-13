@@ -11,5 +11,4 @@ RUN pip install --upgrade pip && \
     pip install -r ./requirements.txt
 
 RUN ["chmod", "+x", "/home/main/docker-entrypoint.sh"]
-CMD [ "python", "create_admin.py"]
 ENTRYPOINT ["sh", "/home/main/docker-entrypoint.sh"]
