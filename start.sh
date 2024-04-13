@@ -33,12 +33,12 @@ apt -y update
 apt autoremove -y
 
 # update + upgrade
-set -e
 apt-get update -y
-apt-get upgrade -y
+#apt-get upgrade -y
 apt-get dist-upgrade -y
 
 # versions
+echo ================================VERSIONS================================
 docker -v
 docker-compose -v
 python -c 'import sys; print(".".join(map(str, sys.version_info[:3])))'
