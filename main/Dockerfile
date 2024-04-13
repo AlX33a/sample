@@ -1,4 +1,12 @@
-FROM python:3.11
+FROM python:3.11-alpine
+
+ARG UID=1000
+ARG GID=1000
+
+RUN groupadd -g "${GID}" app \
+  && useradd --create-home --no-log-init -u "${UID}" -g "${GID}" app
+
+USER app
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1

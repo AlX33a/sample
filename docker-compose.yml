@@ -4,7 +4,11 @@ services:
 
   main:
     image: main
-    build: ./main
+    build:
+      context: "./main"
+      args:
+        - "UID=${UID:-1000}"
+        - "GID=${GID:-1000}"
     container_name: main
     volumes:
       - ./main:/home/main
