@@ -22,8 +22,14 @@ curl -sL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 apt-get install nodejs -y
 apt -y update
 apt autoremove -y
-# sudo apt upgrade -y
 
+# update + upgrade
+set -e
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get dist-upgrade
+
+# versions
 docker -v
 docker-compose -v
 python -c 'import sys; print(".".join(map(str, sys.version_info[:3])))'
