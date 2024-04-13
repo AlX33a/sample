@@ -26,6 +26,6 @@ apt autoremove -y
 
 docker -v
 docker-compose -v
-python -v
+python -c 'import sys; print(".".join(map(str, sys.version_info[:3])))'
 node -v
 npm -v
