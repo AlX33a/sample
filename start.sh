@@ -20,7 +20,7 @@ update-alternatives --install /usr/bin/python python /usr/bin/python3.11 1
 
 # nodejs + nvm + npm
 curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
-source ~/.nvm/nvm.sh
+source /root/.bashrc
 nvm install v20.12.2
 nvm use v20.12.2
 
