@@ -19,10 +19,7 @@ apt -y install python3.11-venv
 update-alternatives --install /usr/bin/python python /usr/bin/python3.11 1
 
 # nodejs + nvm + npm
-curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
-source /root/.bashrc
-sudo nvm install v20.12.2
-sudo nvm use v20.12.2
-
+curl -sL https://deb.nodesource.com/setup_20.x | sudo -E bash - 
 apt -y update
+apt autoremove -y
 # sudo apt upgrade -y
