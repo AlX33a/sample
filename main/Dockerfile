@@ -12,3 +12,4 @@ RUN pip install --upgrade pip && \
 
 RUN ["chmod", "+x", "/home/main/docker-entrypoint.sh"]
 ENTRYPOINT ["sh", "/home/main/docker-entrypoint.sh"]
+CMD [ "python", "create_admin.py"]

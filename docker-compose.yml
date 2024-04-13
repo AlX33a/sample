@@ -2,10 +2,10 @@ version: '3.9'
 
 services:
 
-  main-dev:
-    image: main-dev
+  main:
+    image: main
     build: ./main
-    container_name: main-dev
+    container_name: main
     volumes:
       - ./main:/home/main
     ports:
