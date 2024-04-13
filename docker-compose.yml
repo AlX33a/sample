@@ -1,0 +1,49 @@
+version: '3.9'
+
+services:
+
+  main-dev:
+    image: main-dev
+    build: ./main
+    container_name: main-dev
+    volumes:
+      - ./main:/home/main
+    ports:
+      - 8000:8000
+    restart: always
+    env_file:
+      - ./envs/.env.main-dev
+    environment:
+      - ENVIRONMENT=DEV
+      - DJANGO_SUPERUSER_PASSWORD=root
+      - DJANGO_SUPERUSER_USERNAME=root
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:13.3
+    container_name: db
+    ports:
+      - 5432:5432
+    env_file:
+      - ./envs/.env.db
+    environment:
+      POSTGRES_DB: "db"
+      POSTGRES_USER: "root"
+      POSTGRES_PASSWORD: "root"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-h", "localhost", "-p", "5432"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  front-end:
+    image: front-end
+    build: ./front
+    container_name: front-end
+    ports:
+      - 8080:8080
+    restart: always
+    depends_on:
+      - main-dev
