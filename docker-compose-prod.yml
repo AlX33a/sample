@@ -7,8 +7,8 @@ services:
     build:
       context: "./main"
     container_name: main
-    volumes:
-      - static:/home/main/static
+    # volumes:
+    #   - static:/home/main/static
     ports:
       - target: 8000
         published: 8000
@@ -57,10 +57,10 @@ services:
   nginx:
     image: nginx:1.23.2-alpine
     container_name: nginx
-    volumes:
-      - type: volume
-        source: static
-        target: /home/static
+    # volumes:
+    #   - type: volume
+    #     source: static
+    #     target: /home/static
       - type: bind
         source: ./nginx
         target: /etc/nginx/conf.d
@@ -134,7 +134,7 @@ services:
 volumes:
   pgdata:
   pgadmin-data:
-  static:
+  # static:
 
 networks:
   db:
