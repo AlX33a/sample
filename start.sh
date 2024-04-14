@@ -41,6 +41,7 @@ apt autoremove -y
 for file in sample/envs/.env*; do echo "IP = $(ip a s eth0 | awk '/inet / {print$2}' | cut -f1 -d\/)" >> "$file"; done
 # eth0 ip set in script.js code
 echo "const ip = \"$(ip a s eth0 | awk '/inet / {print$2}' | cut -f1 -d\/)\"" >> "sample/front/public/script.js";
+echo "const port = \"81\"" >> "sample/front/public/script.js";
 
 # versions
 echo ================================VERSIONS================================
@@ -50,14 +51,4 @@ python -c 'import sys; print(".".join(map(str, sys.version_info[:3])))'
 node -v
 npm -v
 cat ./sample/envs/.env.db
-echo ================================VERSIONS================================
-
-if [ "$ENVIRONMENT" = "DEV" ]; then
-echo "const port = \"8000\"" >> "sample/front/public/script.js";
-echo DEV
-elif [ "$ENVIRONMENT" = "PROD" ]; then
-echo "const port = \"81\"" >> "sample/front/public/script.js";
-echo PROD
-fi
-
 echo ================================END================================

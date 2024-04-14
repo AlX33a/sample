@@ -10,7 +10,7 @@ echo "Creating superuser from compose ENV vars"
 python3 manage.py createsuperuser --noinput --email admin@ad.min
 
 echo "Starting development server"
-python3 manage.py runserver 0.0.0.0:8000
+python3 manage.py runserver 0.0.0.0:81
 
 elif [ "$ENVIRONMENT" = "PROD" ]; then
 
