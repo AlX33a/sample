@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
-window.port = process.env.BACK_PORT;
-window.ip = process.env.IP;
+global.port = process.env.BACK_PORT;
+global.ip = process.env.IP;
 
 const app = express();
 const nodeport = process.env.NODE_PORT;
