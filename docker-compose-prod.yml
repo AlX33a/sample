@@ -77,7 +77,10 @@ services:
     image: postgres:13.3
     container_name: db
     ports:
-      - 5432:5432
+      - target: 5432
+        published: 5432
+        protocol: tcp
+        mode: ingress
     env_file:
       - ./envs/.env.db
     environment:
