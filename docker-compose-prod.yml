@@ -52,7 +52,9 @@ services:
     image: nginx:1.23.2-alpine
     container_name: nginx
     volumes:
-      - staticfiles: /home/static-data
+      - type: volume
+        source: staticfiles
+        target: /home/static-data
       - type: bind
         source: ./nginx
         target: /etc/nginx/conf.d
