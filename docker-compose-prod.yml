@@ -7,7 +7,9 @@ services:
     build: ./main
     container_name: main
     volumes:
-      - staticfiles:/home/main/static-data
+      - type: volume
+        source: staticfiles
+        target: /home/main/static
     ports:
       - target: 8000
         published: 8000
@@ -59,7 +61,7 @@ services:
     volumes:
       - type: volume
         source: staticfiles
-        target: /home/static-data
+        target: /home/static
       - type: bind
         source: ./nginx
         target: /etc/nginx/conf.d
