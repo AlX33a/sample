@@ -8,7 +8,7 @@ services:
       context: "./main"
     container_name: main
     volumes:
-      - staticfiles:/home/main/static
+      - static:/home/main/static
     ports:
       - target: 8000
         published: 8000
@@ -59,7 +59,7 @@ services:
     container_name: nginx
     volumes:
       - type: volume
-        source: staticfiles
+        source: static
         target: /home/static
       - type: bind
         source: ./nginx
@@ -134,7 +134,7 @@ services:
 volumes:
   pgdata:
   pgadmin-data:
-  staticfiles:
+  static:
 
 networks:
   db:

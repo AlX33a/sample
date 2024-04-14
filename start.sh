@@ -42,6 +42,7 @@ for file in sample/envs/.env*; do echo "IP = $(ip a s eth0 | awk '/inet / {print
 # eth0 ip set in script.js code
 echo "const ip = \"$(ip a s eth0 | awk '/inet / {print$2}' | cut -f1 -d\/)\"" >> "sample/front/public/script.js";
 echo "const port = \"81\"" >> "sample/front/public/script.js";
+export IP=$(ip a s eth0 | awk '/inet / {print$2}' | cut -f1 -d\/)
 
 # versions
 echo ================================VERSIONS================================
