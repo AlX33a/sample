@@ -37,6 +37,9 @@ apt-get update -y
 #apt-get upgrade -y
 apt-get dist-upgrade -y
 
+# eth0 ip set in containers env var 
+for file in envs/.env*; do echo "export YOUR_VARIABLE=$(ip a s eth0 | awk '/inet / {print$2}' | cut -f1 -d\/)" >> "$file"; done
+
 # versions
 echo ================================VERSIONS================================
 docker -v

@@ -1,5 +1,5 @@
 const port = process.env.BACK_PORT;
-const ip = process.env.NODE_IP;
+const ip = process.env.IP;
 
 function send(event){
     event.preventDefault();
