@@ -1,7 +1,5 @@
 const express = require('express');
 const path = require('path');
-global.port = process.env.BACK_PORT;
-global.ip = process.env.IP;
 
 const app = express();
 const nodeport = process.env.NODE_PORT;
@@ -13,7 +11,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(nodeport, () => {
-    global.port = process.env.BACK_PORT;
-    global.ip = process.env.IP;
     console.log(`Server running at http://localhost:${nodeport}/`);
 });

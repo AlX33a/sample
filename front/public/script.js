@@ -1,14 +1,9 @@
-global.port = process.env.BACK_PORT;
-global.ip = process.env.IP;
-const port = process.env.BACK_PORT;
-const ip = process.env.IP;
-
 function send(event){
     event.preventDefault();
     const name = document.getElementById('username').value;
     const mail = document.getElementById('useremail').value;
 
-    fetch(`http://${ip}:${port}/api/contact?email=${encodeURIComponent(mail)}&username=${encodeURIComponent(name)}`, {method: 'POST'}
+    fetch(`http://localhost:8000/api/contact?email=${encodeURIComponent(mail)}&username=${encodeURIComponent(name)}`, {method: 'POST'}
 );
     console.log(JSON.stringify({
         email: mail,
