@@ -1,4 +1,4 @@
-const backport = process.env.BACK_PORT;
+const backPort = process.env.BACK_PORT;
 const nodeip = process.env.IP;
 
 function send(event){
@@ -6,7 +6,7 @@ function send(event){
     const name = document.getElementById('username').value;
     const mail = document.getElementById('useremail').value;
 
-    fetch(`http://${nodeip}:${backport}/api/contact?email=${encodeURIComponent(mail)}&username=${encodeURIComponent(name)}`, {method: 'POST'}
+    fetch(`http://${nodeip}:${backPort}/api/contact?email=${encodeURIComponent(mail)}&username=${encodeURIComponent(name)}`, {method: 'POST'}
 );
     console.log(JSON.stringify({
         email: mail,
