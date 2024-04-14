@@ -21,15 +21,15 @@ if [ ! -f "$INSTALL_PATH" ]; then
 fi
 apt-get -y install docker-compose docker-ce
 
-# python
-apt -y install python3.11
-apt -y install python3-pip
-apt -y install python3.11-venv
-update-alternatives --install /usr/bin/python python /usr/bin/python3.11 1
+# # python
+# apt -y install python3.11
+# apt -y install python3-pip
+# apt -y install python3.11-venv
+# update-alternatives --install /usr/bin/python python /usr/bin/python3.11 1
 
-# nodejs + npm
-curl -sL https://deb.nodesource.com/setup_20.x | bash
-apt-get install nodejs -y
+# # nodejs + npm
+# curl -sL https://deb.nodesource.com/setup_20.x | bash
+# apt-get install nodejs -y
 
 # update + upgrade
 apt-get update -y

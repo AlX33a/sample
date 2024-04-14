@@ -14,10 +14,13 @@ python3 manage.py runserver 0.0.0.0:81
 
 elif [ "$ENVIRONMENT" = "PROD" ]; then
 
+echo "Creating superuser from compose ENV vars"
+python3 manage.py createsuperuser --noinput --email admin@ad.min
+
 echo "Collecting static files"
 python3 manage.py collectstatic --noinput
 
 echo "Running gunicorn"
-gunicorn --bind 0.0.0.0:8000 main.wsgi:application --timeout 1000 --workers  8
+gunicorn --bind 0.0.0.0:8000 main.wsgi:application --workers  8
 
 fi
