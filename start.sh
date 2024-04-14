@@ -37,7 +37,7 @@ apt autoremove -y
 # apt-get dist-upgrade -y
 
 # eth0 ip set in containers env var 
-for file in sample/envs/.env*; do echo "$(ip a s eth0 | awk '/inet / {print$2}' | cut -f1 -d\/)" >> "$file"; done
+for file in sample/envs/.env*; do echo "IP = $(ip a s eth0 | awk '/inet / {print$2}' | cut -f1 -d\/)" >> "$file"; done
 
 # versions
 echo ================================VERSIONS================================
