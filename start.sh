@@ -54,10 +54,10 @@ echo ================================VERSIONS================================
 
 if [ "$ENVIRONMENT" = "DEV" ]; then
 echo "const port = \"8000\"" >> "sample/front/public/script.js";
-docker-compose -f /root/sample/docker-compose-dev.yml up
+echo DEV
 elif [ "$ENVIRONMENT" = "PROD" ]; then
 echo "const port = \"81\"" >> "sample/front/public/script.js";
-docker-compose -f /root/sample/docker-compose-prod.yml up
+echo PROD
 fi
 
 echo ================================END================================
