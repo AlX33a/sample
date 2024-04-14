@@ -23,7 +23,7 @@ services:
       resources:
         limits:
           cpus: '0.40'
-          memory: 400M
+          memory: 500M
     networks:
       - db
       - nginx
@@ -44,7 +44,7 @@ services:
       resources:
         limits:
           cpus: '0.20'
-          memory: 200M
+          memory: 250M
     networks:
       - nginx
 
@@ -69,7 +69,7 @@ services:
       resources:
         limits:
           cpus: '0.10'
-          memory: 100M
+          memory: 150M
     networks:
       - nginx
 
@@ -95,7 +95,7 @@ services:
       resources:
         limits:
           cpus: '0.20'
-          memory: 200M
+          memory: 400M
     networks:
       - db
 
