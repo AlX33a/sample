@@ -38,10 +38,18 @@ services:
 
   front-end:
     image: front-end
-    build: ./front
+    build:
+      context: "./front"
+      args:
+        - "UID=${UID:-1000}"
+        - "GID=${GID:-1000}"
     container_name: front-end
     ports:
-      - 8080:8080
+      - 80:80
     restart: always
+    environment:
+      - NODE_PORT=80
+      - BACK_PORT=8000
+      - NODE_IP=109.71.242.27
     depends_on:
       - main
