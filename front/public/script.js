@@ -1,6 +1,3 @@
-const backPort = process.env.BACK_PORT;
-const nodeip = process.env.IP;
-
 function send(event){
     event.preventDefault();
     const name = document.getElementById('username').value;
