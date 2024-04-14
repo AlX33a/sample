@@ -11,8 +11,17 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 
 # docker compose
 git clone https://github.com/docker/compose.git
-curl -L "https://github.com/docker/compose/releases/download/v2.19.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
+
+DOWNLOAD_URL="https://github.com/docker/compose/releases/download/v2.19.1/docker-compose-$(uname -s)-$(uname -m)"
+INSTALL_PATH="/usr/local/bin/docker-compose"
+
+if [ -f "$INSTALL_PATH" ]; then
+    rm "$INSTALL_PATH"  # Удаляем существующий файл перед загрузкой нового
+fi
+
+curl -L $DOWNLOAD_URL -o $INSTALL_PATH
+chmod +x $INSTALL_PATH
+
 apt-get -y install docker-compose docker-ce
 
 # python
