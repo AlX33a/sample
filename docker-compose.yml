@@ -50,6 +50,6 @@ services:
     environment:
       - NODE_PORT=80
       - BACK_PORT=8000
-      - NODE_IP=109.71.242.27
+      - NODE_IP=85.193.80.93
     depends_on:
       - main
