@@ -21,8 +21,6 @@ CSRF_TRUSTED_ORIGINS = os.getenv(
     "DJANGO_CSRF_TRUSTED_ORIGINS", "http://localhost"
 ).split(",")
 
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'http')
-
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",

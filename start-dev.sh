@@ -1,5 +1,5 @@
 #!/bin/sh
-echo ================================START================================
+echo ================================ START ================================
 
 apt-get update -y
 apt-get -y install git
@@ -21,15 +21,15 @@ if [ ! -f "$INSTALL_PATH" ]; then
 fi
 apt-get -y install docker-compose docker-ce
 
-# # python
-# apt -y install python3.11
-# apt -y install python3-pip
-# apt -y install python3.11-venv
-# update-alternatives --install /usr/bin/python python /usr/bin/python3.11 1
+# python
+apt -y install python3.11
+apt -y install python3-pip
+apt -y install python3.11-venv
+update-alternatives --install /usr/bin/python python /usr/bin/python3.11 1
 
-# # nodejs + npm
-# curl -sL https://deb.nodesource.com/setup_20.x | bash
-# apt-get install nodejs -y
+# nodejs + npm
+curl -sL https://deb.nodesource.com/setup_20.x | bash
+apt-get install nodejs -y
 
 # update + upgrade
 apt-get update -y
@@ -37,12 +37,10 @@ apt autoremove -y
 # apt-get upgrade -y
 # apt-get dist-upgrade -y
 
-# eth0 ip set in containers env var 
-for file in sample/envs/.env*; do echo "IP = $(ip a s eth0 | awk '/inet / {print$2}' | cut -f1 -d\/)" >> "$file"; done
-# eth0 ip set in script.js code
-echo "const ip = \"$(ip a s eth0 | awk '/inet / {print$2}' | cut -f1 -d\/)\"" >> "sample/front/public/script.js";
+# localhost set in containers env var 
+for file in sample/envs/.env*; do echo "IP = localhost" >> "$file"; done
+echo "const ip = \"localhost\"" >> "sample/front/public/script.js";
 echo "const port = \"81\"" >> "sample/front/public/script.js";
-export IP=$(ip a s eth0 | awk '/inet / {print$2}' | cut -f1 -d\/)
 
 # versions
 echo ================================VERSIONS================================
@@ -52,4 +50,4 @@ python -c 'import sys; print(".".join(map(str, sys.version_info[:3])))'
 node -v
 npm -v
 cat ./sample/envs/.env.db
-echo ================================END================================
+echo ================================   END   ================================
