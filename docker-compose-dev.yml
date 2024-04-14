@@ -10,7 +10,7 @@ services:
     volumes:
       - ./main:/home/main
     ports:
-      - 8000:8000
+      - 81:81
     restart: always
     env_file:
       - ./envs/.env.main-dev
