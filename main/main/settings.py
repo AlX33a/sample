@@ -18,7 +18,7 @@ ADMIN_URL = os.getenv("DJANGO_ADMIN_URL", "admin")
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "*").split(",")
 
 CSRF_TRUSTED_ORIGINS = os.getenv(
-    "DJANGO_CSRF_TRUSTED_ORIGINS", "http://localhost:1337"
+    "DJANGO_CSRF_TRUSTED_ORIGINS", "http://localhost:81"
 ).split(",")
 
 INSTALLED_APPS = [
@@ -157,7 +157,7 @@ SIMPLE_JWT = {
 CORS_ALLOW_ALL_ORIGINS = strtobool(os.getenv("DJANGO_CORS_ALLOW_ALL_ORIGINS", "True"))
 
 CORS_ALLOWED_ORIGINS = os.getenv(
-    "DJANGO_CORS_ALLOWED_ORIGINS", "http://localhost:8000"
+    "DJANGO_CORS_ALLOWED_ORIGINS", "http://localhost:81"
 ).split(",")
 
 SPECTACULAR_SETTINGS = {
