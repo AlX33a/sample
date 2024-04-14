@@ -4,7 +4,8 @@ services:
 
   main:
     image: main
-    build: ./main
+    build:
+      context: "./main"
     container_name: main
     volumes:
       - staticfiles:/home/main/static
