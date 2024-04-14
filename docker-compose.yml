@@ -6,9 +6,6 @@ services:
     image: main
     build:
       context: "./main"
-      args:
-        - "UID=${UID:-1000}"
-        - "GID=${GID:-1000}"
     container_name: main
     volumes:
       - ./main:/home/main
@@ -40,9 +37,6 @@ services:
     image: front-end
     build:
       context: "./front"
-      args:
-        - "UID=${UID:-1000}"
-        - "GID=${GID:-1000}"
     container_name: front-end
     ports:
       - 80:80

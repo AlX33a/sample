@@ -11,7 +11,6 @@ echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
   $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
   tee /etc/apt/sources.list.d/docker.list > /dev/null
-apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 
 # docker compose
@@ -38,7 +37,7 @@ apt autoremove -y
 
 # eth0 ip set in containers env var 
 for file in sample/envs/.env*; do echo "IP = $(ip a s eth0 | awk '/inet / {print$2}' | cut -f1 -d\/)" >> "$file"; done
-
+# eth0 ip set in script.js code
 echo "const ip = \"$(ip a s eth0 | awk '/inet / {print$2}' | cut -f1 -d\/)\"" >> "sample/front/public/script.js";
 
 # versions
@@ -49,3 +48,4 @@ python -c 'import sys; print(".".join(map(str, sys.version_info[:3])))'
 node -v
 npm -v
 cat ./sample/envs/.env.db
+echo ================================VERSIONS================================

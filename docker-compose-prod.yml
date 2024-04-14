@@ -1,0 +1,132 @@
+version: '3.9'
+
+services:
+
+  main:
+    image: main
+    build: ./main
+    container_name: main
+    volumes:
+      - staticfiles:/home/main/static-data
+    expose:
+      - "8000"
+    env_file:
+      - ./config/.main-prod
+    environment:
+      - ENVIRONMENT=PROD
+      - DJANGO_SUPERUSER_PASSWORD=root
+      - DJANGO_SUPERUSER_USERNAME=root
+    depends_on:
+      - db
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 400M
+    networks:
+      - db
+      - nginx
+
+  front-end:
+    image: front-end
+    build:
+      context: "./front"
+    container_name: front-end
+    ports:
+      - 80:80
+    restart: always
+    env_file:
+      - ./envs/.env.front-prod
+    depends_on:
+      - main
+    deploy:
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 200M
+    networks:
+      - nginx
+
+  nginx:
+    image: nginx:1.23.2-alpine
+    container_name: nginx
+    volumes:
+      - staticfiles:/home/static-data
+      - type: bind
+        source: ./nginx
+        target: /etc/nginx/conf.d
+        read_only: true
+    depends_on:
+      - main
+    ports:
+      - target: 81
+        published: 81
+        protocol: tcp
+        mode: ingress
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 200M
+    networks:
+      - nginx
+
+  db:
+    image: postgres:13.3
+    container_name: db
+    ports:
+      - 5432:5432
+    env_file:
+      - ./envs/.env.db
+    environment:
+      POSTGRES_DB: "db"
+      POSTGRES_USER: "root"
+      POSTGRES_PASSWORD: "root"
+    volumes:
+      - type: volume
+        source: pgdata
+        target: /var/lib/postgresql/data
+    deploy:
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 200M
+    networks:
+      - db
+
+  pgadmin:
+    image: dpage/pgadmin4:7.2
+    container_name: pgadmin
+    depends_on:
+      - db
+    ports:
+      - 5050:5050
+    env_file:
+      - ./config/.env.db
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin@pgadmin.org
+      PGADMIN_DEFAULT_PASSWORD: root
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+    restart: unless-stopped
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    deploy:
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 200M
+    networks:
+      - db
+
+volumes:
+  pgdata:
+  pgadmin-data:
+  staticfiles:
+
+networks:
+  db:
+    driver: bridge
+  nginx:
+    driver: bridge
