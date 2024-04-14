@@ -11,7 +11,7 @@ services:
     expose:
       - "8000"
     env_file:
-      - ./config/.main-prod
+      - ./envs/.main-prod
     environment:
       - ENVIRONMENT=PROD
       - DJANGO_SUPERUSER_PASSWORD=root
@@ -104,7 +104,7 @@ services:
     ports:
       - 5050:5050
     env_file:
-      - ./config/.env.db
+      - ./envs/.env.db
     environment:
       PGADMIN_DEFAULT_EMAIL: pgadmin@pgadmin.org
       PGADMIN_DEFAULT_PASSWORD: root
