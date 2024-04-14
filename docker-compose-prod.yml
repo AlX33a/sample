@@ -4,16 +4,10 @@ services:
 
   main:
     image: main
-    build:
-      context: "./main"
+    build: "./main"
     container_name: main
-    # volumes:
-    #   - static:/home/main/static
     ports:
-      - target: 8000
-        published: 8000
-        protocol: tcp
-        mode: ingress
+      - 8000:8000
     env_file:
       - ./envs/.env.main-prod
     environment:
@@ -26,16 +20,15 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.30'
-          memory: 500M
+          cpus: '0.20'
+          memory: 400M
     networks:
       - db
       - nginx
 
   front-end:
     image: front-end
-    build:
-      context: "./front"
+    build: "./front"
     container_name: front-end
     ports:
       - 80:80
@@ -49,8 +42,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.20'
-          memory: 250M
+          cpus: '0.30'
+          memory: 100M
     networks:
       - nginx
 
@@ -58,9 +51,6 @@ services:
     image: nginx:1.23.2-alpine
     container_name: nginx
     volumes:
-    #   - type: volume
-    #     source: static
-    #     target: /home/static
       - type: bind
         source: ./nginx
         target: /etc/nginx/conf.d
@@ -68,16 +58,13 @@ services:
     depends_on:
       - main
     ports:
-      - target: 81
-        published: 81
-        protocol: tcp
-        mode: ingress
+      - 81:81
     restart: always
     deploy:
       resources:
         limits:
           cpus: '0.10'
-          memory: 250M
+          memory: 100M
     networks:
       - nginx
 
@@ -85,10 +72,7 @@ services:
     image: postgres:13.3
     container_name: db
     ports:
-      - target: 5432
-        published: 5432
-        protocol: tcp
-        mode: ingress
+      - 5432:5432
     env_file:
       - ./envs/.env.db
     environment:
@@ -102,39 +86,13 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.30'
-          memory: 500M
+          cpus: '0.40'
+          memory: 200M
     networks:
       - db
 
-  # pgadmin:
-  #   image: dpage/pgadmin4:7.2
-  #   container_name: pgadmin
-  #   depends_on:
-  #     - db
-  #   ports:
-  #     - 5050:5050
-  #   env_file:
-  #     - ./envs/.env.db
-  #   environment:
-  #     PGADMIN_DEFAULT_EMAIL: pgadmin@pgadmin.org
-  #     PGADMIN_DEFAULT_PASSWORD: root
-  #     PGADMIN_CONFIG_SERVER_MODE: "False"
-  #   restart: unless-stopped
-  #   volumes:
-  #     - pgadmin-data:/var/lib/pgadmin
-  #   deploy:
-  #     resources:
-  #       limits:
-  #         cpus: '0.10'
-  #         memory: 200M
-  #   networks:
-  #     - db
-
 volumes:
   pgdata:
-  pgadmin-data:
-  # static:
 
 networks:
   db:
