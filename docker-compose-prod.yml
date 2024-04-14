@@ -8,8 +8,11 @@ services:
     container_name: main
     volumes:
       - staticfiles:/home/main/static-data
-    expose:
-      - "8000"
+    ports:
+      - target: 8000
+        published: 8000
+        protocol: tcp
+        mode: ingress
     env_file:
       - ./envs/.env.main-prod
     environment:
