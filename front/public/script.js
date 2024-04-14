@@ -1,3 +1,6 @@
+global.port = process.env.BACK_PORT;
+global.ip = process.env.IP;
+
 function send(event){
     event.preventDefault();
     const name = document.getElementById('username').value;
