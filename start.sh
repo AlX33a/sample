@@ -14,6 +14,13 @@ echo \
 apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 
+if test -d "/root/compose"; then
+git clone https://github.com/docker/compose.git
+curl -L "https://github.com/docker/compose/releases/download/v2.19.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+apt-get -y install docker-compose docker-ce
+else
+
 # docker compose
 git clone https://github.com/docker/compose.git
 curl -L "https://github.com/docker/compose/releases/download/v2.19.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
@@ -46,3 +53,5 @@ docker-compose -v
 python -c 'import sys; print(".".join(map(str, sys.version_info[:3])))'
 node -v
 npm -v
+
+fi
