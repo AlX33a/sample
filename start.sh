@@ -1,4 +1,6 @@
 #!/bin/sh
+echo ================================START================================
+
 apt-get update -y
 apt-get -y install git
 
@@ -57,3 +59,5 @@ elif [ "$ENVIRONMENT" = "PROD" ]; then
 echo "const port = \"81\"" >> "sample/front/public/script.js";
 docker-compose -f /root/sample/docker-compose-prod.yml up
 fi
+
+echo ================================END================================
