@@ -27,13 +27,12 @@ apt -y install python3.11-venv
 update-alternatives --install /usr/bin/python python /usr/bin/python3.11 1
 
 # nodejs + npm
-curl -sL https://deb.nodesource.com/setup_20.x | -E bash - 
+curl -sL https://deb.nodesource.com/setup_20.x | bash
 apt-get install nodejs -y
-apt -y update
-apt autoremove -y
 
 # update + upgrade
 apt-get update -y
+apt autoremove -y
 # apt-get upgrade -y
 # apt-get dist-upgrade -y
 
