@@ -43,5 +43,7 @@ services:
     restart: always
     env_file:
       - ./envs/.env.front-dev
+    environment:
+      - ENVIRONMENT=DEV
     depends_on:
       - main

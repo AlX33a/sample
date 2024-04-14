@@ -3,7 +3,7 @@ function send(event){
     const name = document.getElementById('username').value;
     const mail = document.getElementById('useremail').value;
 
-    fetch(`http://${ip}:8000/api/contact?email=`+encodeURIComponent(mail)+"&username="+encodeURIComponent(name),
+    fetch(`http://${ip}:${port}/api/contact?email=`+encodeURIComponent(mail)+"&username="+encodeURIComponent(name),
     {method:"POST"}
 );
     console.log(JSON.stringify({

@@ -38,6 +38,8 @@ services:
     restart: always
     env_file:
       - ./envs/.env.front-prod
+    environment:
+      - ENVIRONMENT=PROD
     depends_on:
       - main
     deploy:

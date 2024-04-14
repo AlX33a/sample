@@ -11,15 +11,12 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 
 # docker compose
 git clone https://github.com/docker/compose.git
-
 INSTALL_PATH="/usr/local/bin/docker-compose"
-
 if [ ! -f "$INSTALL_PATH" ]; then
     DOWNLOAD_URL="https://github.com/docker/compose/releases/download/v2.19.1/docker-compose-$(uname -s)-$(uname -m)"
     curl -L $DOWNLOAD_URL -o $INSTALL_PATH
     chmod +x $INSTALL_PATH
 fi
-
 apt-get -y install docker-compose docker-ce
 
 # python
@@ -52,3 +49,11 @@ node -v
 npm -v
 cat ./sample/envs/.env.db
 echo ================================VERSIONS================================
+
+if [ "$ENVIRONMENT" = "DEV" ]; then
+echo "const port = \"8000\"" >> "sample/front/public/script.js";
+docker-compose -f /root/sample/docker-compose-dev.yml up
+elif [ "$ENVIRONMENT" = "PROD" ]; then
+echo "const port = \"81\"" >> "sample/front/public/script.js";
+docker-compose -f /root/sample/docker-compose-prod.yml up
+fi
