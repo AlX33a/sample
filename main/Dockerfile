@@ -6,12 +6,12 @@ ARG GID=1000
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-WORKDIR /home/app/main
+WORKDIR /home/main
 
-COPY . ./app
+COPY . .
 
 RUN pip install --upgrade pip && \
     pip install -r ./requirements.txt
 
-RUN ["chmod", "+x", "/home/main/app/docker-entrypoint.sh"]
-ENTRYPOINT ["sh", "/home/main/app/docker-entrypoint.sh"]
+RUN ["chmod", "+x", "/home/main/docker-entrypoint.sh"]
+ENTRYPOINT ["sh", "/home/main/docker-entrypoint.sh"]
