@@ -39,7 +39,7 @@ apt autoremove -y
 # eth0 ip set in containers env var 
 for file in sample/envs/.env*; do echo "IP = $(ip a s eth0 | awk '/inet / {print$2}' | cut -f1 -d\/)" >> "$file"; done
 
-echo "const ip = $(ip a s eth0 | awk '/inet / {print$2}' | cut -f1 -d\/)" >> "sample/front/publick/script.js";
+echo "const ip = $(ip a s eth0 | awk '/inet / {print$2}' | cut -f1 -d\/)" >> "sample/front/public/script.js";
 
 # versions
 echo ================================VERSIONS================================
