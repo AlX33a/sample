@@ -5,8 +5,7 @@ function send(event){
     const port = process.env.BACK_PORT;
     const ip = process.env.IP;
 
-    fetch(`${ip}:${port}/api/contact?email=`+encodeURIComponent(mail)+'&username='+encodeURIComponent(name),
-    {method:'POST'}
+    fetch(`http://${ip}:${port}/api/contact?email=${encodeURIComponent(mail)}&username=${encodeURIComponent(name)}`, {method: 'POST'}
 );
     console.log(JSON.stringify({
         email: mail,
