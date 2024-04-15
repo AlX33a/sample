@@ -20,7 +20,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.20'
+          cpus: '0.40'
           memory: 400M
     networks:
       - db
@@ -42,7 +42,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.30'
+          cpus: '0.60'
           memory: 100M
     networks:
       - nginx
@@ -86,7 +86,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.40'
+          cpus: '0.70'
           memory: 200M
     networks:
       - db
