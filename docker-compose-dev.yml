@@ -19,10 +19,11 @@ services:
       - DJANGO_SUPERUSER_PASSWORD=root
       - DJANGO_SUPERUSER_USERNAME=root
     depends_on:
-      - db
+      db:
+        condition: service_completed_successfully
 
   db:
-    image: postgres:13.3
+    image: postgres:16
     container_name: db
     ports:
       - 5432:5432
