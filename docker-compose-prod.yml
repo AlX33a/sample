@@ -11,7 +11,8 @@ services:
         target: /etc/nginx/conf.d
         read_only: true
     restart: always
-    depends_on: "main"
+    depends_on: 
+      - main
     ports: 
       - 81:81
     deploy:
@@ -49,7 +50,8 @@ services:
     volumes:
       - ./dist:/result
     restart: always
-    depends_on: "front"
+    depends_on: 
+      - front
     deploy:
       resources:
         limits:
