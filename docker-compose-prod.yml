@@ -1,5 +1,5 @@
 version: '3.9'
-# add replications
+# add replications and fix networks?
 services:
 
   nginx:
@@ -15,7 +15,7 @@ services:
         target: /etc/nginx/nginx.conf
         read_only: true
     restart: always
-    depends_on: 
+    depends_on:
       - main
     ports:
       - 81:81
@@ -24,9 +24,9 @@ services:
         limits:
           cpus: '0.05'
           memory: 50M
-    networks:
-      - back
-      - front
+    # networks:
+    #   - back
+    #   - front
 
   main:
     image: main
@@ -44,8 +44,8 @@ services:
         limits:
           cpus: '0.9'
           memory: 400M
-    networks:
-      - back
+    # networks:
+    #   - back
 
   front:
     image: front
@@ -57,13 +57,15 @@ services:
       - 80:80
     env_file: ./envs/.env.front-prod
     restart: always
+    depends_on:
+     - nginx
     deploy:
       resources:
         limits:
           cpus: '0.05'
           memory: 50M
-    networks:
-      - front
+    # networks:
+    #   - front
 
   db:
     image: postgres:16
@@ -86,14 +88,14 @@ services:
           memory: 100M
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -d db -U root" ]
-    networks:
-      - back
+#     networks:
+#       - back
 
-networks:
-  front:
-    driver: bridge
-  back:
-    driver: bridge
+# networks:
+#   front:
+#     driver: bridge
+#   back:
+#     driver: bridge
 
 volumes:
   pgdata:
