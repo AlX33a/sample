@@ -3,7 +3,7 @@ version: '3.9'
 services:
 
   nginx:
-    image: nginx:1.25
+    image: unkerity/bunkerized-nginx
     container_name: nginx
     volumes:
       - type: bind

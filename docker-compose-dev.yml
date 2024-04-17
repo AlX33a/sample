@@ -4,47 +4,42 @@ services:
 
   main:
     image: main
-    build:
-      context: "./main"
+    build: "./main"
     container_name: main
-    volumes:
-      - ./main:/home/main
     ports:
-      - 81:81
+      - 8000:8000
+    env_file: ./envs/.env.main-dev
     restart: always
-    env_file:
-      - ./envs/.env.main-dev
-    environment:
-      - ENVIRONMENT=DEV
-      - DJANGO_SUPERUSER_PASSWORD=root
-      - DJANGO_SUPERUSER_USERNAME=root
     depends_on:
       db:
-        condition: service_completed_successfully
+        condition: service_healthy
+
+  front:
+    image: front
+    build:
+      context: "./front"
+      target: public
+    container_name: front
+    ports:
+      - 80:80
+    env_file: ./envs/.env.front-dev
+    restart: always
+    depends_on:
+     - nginx
 
   db:
     image: postgres:16
     container_name: db
     ports:
       - 5432:5432
-    env_file:
-      - ./envs/.env.db
+    env_file: ./envs/.env.db
     environment:
       POSTGRES_DB: "db"
       POSTGRES_USER: "root"
       POSTGRES_PASSWORD: "root"
-
-  front-end:
-    image: front-end
-    build:
-      context: "./front"
-    container_name: front-end
-    ports:
-      - 80:80
-    restart: always
-    env_file:
-      - ./envs/.env.front-dev
-    environment:
-      - ENVIRONMENT=DEV
-    depends_on:
-      - main
+    volumes:
+      - type: volume
+        source: pgdata
+        target: /var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -d db -U root" ]
