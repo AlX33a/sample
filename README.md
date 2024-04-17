@@ -10,4 +10,4 @@ docker-compose -f ./sample/docker-compose-prod.yml up
 
 # tests
 pip install molotov
-molotov -w 1000 --sprint 10000 load.py
+molotov -w 1000 load.py

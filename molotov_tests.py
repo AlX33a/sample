@@ -18,5 +18,5 @@ async def scenario_two(session):
         assert resp.status == 200
 
 if __name__ == '__main__':
-    molotovsprint = 10000
+    molotovsprint = 100000
     molotov.main(sprints=molotovsprint)
