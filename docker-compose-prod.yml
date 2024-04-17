@@ -2,7 +2,7 @@ version: '3.9'
 # add replications and networks
 services:
 
- nginx:
+  nginx:
     image: nginx:1.25
     container_name: nginx
     volumes:
@@ -11,9 +11,8 @@ services:
         target: /etc/nginx/conf.d
         read_only: true
     restart: always
-    depends_on: main
-    ports:
-      - 81:81
+    depends_on: "main"
+    ports: "81:81"
     deploy:
       resources:
         limits:
@@ -24,12 +23,12 @@ services:
     image: main
     build: "./main"
     container_name: main
-    ports: 8000:8000
+    ports: "8000:8000"
     env_file: ./envs/.env.main-prod
     restart: always
     depends_on:
       db:
-        condition: service_healthy    
+        condition: service_healthy
     deploy:
       resources:
         limits:
@@ -42,13 +41,12 @@ services:
       context: "./front"
       target: public
     container_name: front
-    ports: 80:80
+    ports: "80:80"
     env_file: ./envs/.env.front-prod
     volumes:
       - ./dist:/result
     restart: always
-    depends_on:
-      - front
+    depends_on: "front"
     deploy:
       resources:
         limits:
@@ -58,10 +56,8 @@ services:
   db:
     image: postgres:16
     container_name: db
-    ports:
-      - 5432:5432
-    env_file:
-      - ./envs/.env.db
+    ports: "5432:5432"
+    env_file: ./envs/.env.db
     environment:
       POSTGRES_DB: "db"
       POSTGRES_USER: "root"
