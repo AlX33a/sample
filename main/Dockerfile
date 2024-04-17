@@ -31,4 +31,4 @@ ENV PATH="./venv/bin:$PATH"
 RUN pip install --upgrade pip && \
     pip install -r ./requirements.txt
 
-ENTRYPOINT ["sh", "/home/main/docker-entrypoint.sh"]
+ENTRYPOINT ["sh", "docker-entrypoint.sh"]
