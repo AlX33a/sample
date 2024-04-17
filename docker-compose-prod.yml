@@ -1,54 +1,8 @@
 version: '3.9'
-
+# add replications and networks
 services:
 
-  main:
-    image: main
-    build: "./main"
-    container_name: main
-    ports:
-      - 8000:8000
-    env_file:
-      - ./envs/.env.main-prod
-    environment:
-      - ENVIRONMENT=PROD
-      - DJANGO_SUPERUSER_PASSWORD=root
-      - DJANGO_SUPERUSER_USERNAME=root
-    depends_on:
-      db:
-        condition: service_healthy
-    restart: always
-    deploy:
-      resources:
-        limits:
-          cpus: '0.50'
-          memory: 400M
-    networks:
-      - db
-      - nginx
-
-  front-end:
-    image: front-end
-    build: "./front"
-    container_name: front-end
-    ports:
-      - 80:80
-    restart: always
-    env_file:
-      - ./envs/.env.front-prod
-    environment:
-      - ENVIRONMENT=PROD
-    depends_on:
-      - main
-    deploy:
-      resources:
-        limits:
-          cpus: '0.60'
-          memory: 100M
-    networks:
-      - nginx
-
-  nginx:
+ nginx:
     image: nginx:1.25
     container_name: nginx
     volumes:
@@ -56,18 +10,50 @@ services:
         source: ./nginx
         target: /etc/nginx/conf.d
         read_only: true
-    depends_on:
-      - main
+    restart: always
+    depends_on: main
     ports:
       - 81:81
-    restart: always
     deploy:
       resources:
         limits:
           cpus: '0.10'
           memory: 100M
-    networks:
-      - nginx
+
+  main:
+    image: main
+    build: "./main"
+    container_name: main
+    ports: 8000:8000
+    env_file: ./envs/.env.main-prod
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy    
+    deploy:
+      resources:
+        limits:
+          cpus: '0.30'
+          memory: 400M
+
+  front:
+    image: front
+    build:
+      context: "./front"
+      target: public
+    container_name: front
+    ports: 80:80
+    env_file: ./envs/.env.front-prod
+    volumes:
+      - ./dist:/result
+    restart: always
+    depends_on:
+      - front
+    deploy:
+      resources:
+        limits:
+          cpus: '0.10'
+          memory: 100M
 
   db:
     image: postgres:16
@@ -87,18 +73,10 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.50'
+          cpus: '0.30'
           memory: 200M
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -d db -U root" ]
-    networks:
-      - db
 
 volumes:
   pgdata:
-
-networks:
-  db:
-    driver: bridge
-  nginx:
-    driver: bridge
