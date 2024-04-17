@@ -3,8 +3,8 @@ import molotov
 import random
 import asyncio
 
-API_URL = "http://82.97.241.72:81/api/contact?email=test%40example.com&username=test"
-BASE_URL = "http://82.97.241.72"
+API_URL = "http://188.225.78.8:81/api/contact?email=test%40example.com&username=test"
+BASE_URL = "http://188.225.78.8"
 
 @molotov.scenario(weight=50)
 async def scenario_one(session):
