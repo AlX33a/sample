@@ -25,7 +25,7 @@ chown "$APP_USER_UID:$APP_USER_GID" -R "$APP_DIR"
 WORKDIR "${APP_DIR}"
 USER "${APP_USER}"
 
-RUN python -m venv venv
+RUN python3 -m venv venv
 ENV PATH="./venv/bin:$PATH"
 
 RUN pip install --upgrade pip && \
