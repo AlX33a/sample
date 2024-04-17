@@ -13,7 +13,7 @@ services:
     restart: always
     depends_on: 
       - main
-    ports: 
+    ports:
       - 81:81
     deploy:
       resources:
@@ -25,7 +25,7 @@ services:
     image: main
     build: "./main"
     container_name: main
-    ports: 
+    ports:
       - 8000:8000
     env_file: ./envs/.env.main-prod
     restart: always
@@ -44,14 +44,12 @@ services:
       context: "./front"
       target: public
     container_name: front
-    ports: 
+    ports:
       - 80:80
     env_file: ./envs/.env.front-prod
     volumes:
       - ./dist:/result
     restart: always
-    depends_on: 
-      - front
     deploy:
       resources:
         limits:
@@ -61,7 +59,7 @@ services:
   db:
     image: postgres:16
     container_name: db
-    ports: 
+    ports:
       - 5432:5432
     env_file: ./envs/.env.db
     environment:

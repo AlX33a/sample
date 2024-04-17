@@ -2,7 +2,7 @@ FROM node:20-slim as app
 
 WORKDIR /app
 COPY . ./
-RUN npm i && npm run build
+# RUN npm i && npm run build
 
 
 
