@@ -39,7 +39,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.45'
+          cpus: '0.9'
           memory: 400M
 
   front:
@@ -75,7 +75,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.35'
+          cpus: '0.8'
           memory: 100M
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -d db -U root" ]
