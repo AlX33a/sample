@@ -47,8 +47,6 @@ services:
     ports:
       - 80:80
     env_file: ./envs/.env.front-prod
-    volumes:
-      - ./dist:/result
     restart: always
     deploy:
       resources:
