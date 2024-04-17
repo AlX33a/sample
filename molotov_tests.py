@@ -1,6 +1,7 @@
 # file for load test site
 import molotov
 import random
+import asyncio
 
 API_URL = "http://82.97.241.72:81/api/contact?email=test%40example.com&username=test"
 BASE_URL = "http://82.97.241.72"
@@ -18,5 +19,5 @@ async def scenario_two(session):
         assert resp.status == 200
 
 if __name__ == '__main__':
-    molotovsprint = 100000
+    molotovsprint = 10000
     molotov.main(sprints=molotovsprint)

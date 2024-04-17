@@ -7,8 +7,12 @@ services:
     container_name: nginx
     volumes:
       - type: bind
-        source: ./nginx
-        target: /etc/nginx/conf.d
+        source: ./nginx/default.conf
+        target: /etc/nginx/conf.d/default.conf
+        read_only: true
+      - type: bind
+        source: ./nginx/nginx.conf
+        target: /etc/nginx/nginx.conf
         read_only: true
     restart: always
     depends_on: 
@@ -18,8 +22,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.10'
-          memory: 100M
+          cpus: '0.05'
+          memory: 50M
 
   main:
     image: main
@@ -35,7 +39,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.30'
+          cpus: '0.45'
           memory: 400M
 
   front:
@@ -51,8 +55,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.10'
-          memory: 100M
+          cpus: '0.05'
+          memory: 50M
 
   db:
     image: postgres:16
@@ -71,8 +75,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.30'
-          memory: 200M
+          cpus: '0.35'
+          memory: 100M
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -d db -U root" ]
 
