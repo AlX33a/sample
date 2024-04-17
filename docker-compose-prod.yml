@@ -23,7 +23,7 @@ services:
       resources:
         limits:
           cpus: '0.05'
-          memory: 50M
+          memory: 100M
     # networks:
     #   - back
     #   - front
@@ -63,7 +63,7 @@ services:
       resources:
         limits:
           cpus: '0.05'
-          memory: 50M
+          memory: 100M
     # networks:
     #   - front
 
@@ -85,7 +85,7 @@ services:
       resources:
         limits:
           cpus: '0.7'
-          memory: 100M
+          memory: 200M
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -d db -U root" ]
 #     networks:
