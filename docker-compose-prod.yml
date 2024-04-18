@@ -1,9 +1,10 @@
 version: '3.9'
-# add replications and fix networks?
+# add replications and fix networks, bunkerized nginx (unkerity/bunkerized-nginx)
+# https://github.com/bunkerity/bunkerweb/blob/master/examples/load-balancer/docker-compose.yml
 services:
 
   nginx:
-    image: unkerity/bunkerized-nginx
+    image: nginx:1.25
     container_name: nginx
     volumes:
       - type: bind

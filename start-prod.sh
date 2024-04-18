@@ -4,12 +4,16 @@ echo ================================ START ================================
 apt-get update -y
 apt-get -y install git
 
-# docker
-sudo apt install curl software-properties-common ca-certificates apt-transport-https -y
-wget -O- https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor | sudo tee /etc/apt/keyrings/docker.gpg > /dev/null
-echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu jammy stable"| sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt update -y
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+# docker root-less
+apt install -y dbus-user-session fuse-overlayfs
+apt remove docker docker-engine docker.io containerd runc
+apt update
+apt install docker-ce docker-ce-cli containerd.io
+systemctl disable --now docker.service docker.socket
+curl -fsSL https://get.docker.com/rootless | sh
+systemctl --user start docker
+systemctl --user enable docker
+loginctl enable-linger $(whoami)
 
 # docker compose
 git clone https://github.com/docker/compose.git
