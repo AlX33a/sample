@@ -50,5 +50,6 @@ echo ================================   END   ================================
 
 chown -R userdoc:userdoc ./sample
 chmod +x ./sample
-su - userdoc
-exec bash
+su - userdoc << EOF
+docker-compose -f ./sample/docker-compose-prod.yml up
+EOF
