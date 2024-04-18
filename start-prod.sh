@@ -11,9 +11,10 @@ apt-get remove -y docker docker-engine docker.io containerd runc
 apt-get install -y docker-ce docker-ce-cli containerd.io
 systemctl disable --now docker.service docker.socket
 curl -sSL https://get.docker.com/rootless | sh
-systemctl --user start docker
-systemctl --user enable docker
-loginctl enable-linger $(whoami)
+export PATH=/home/$(whoami)/bin:$PATH
+export DOCKER_HOST=unix:///run/user/$(id -u)/docker.sock
+adduser userdoc
+usermod -aG docker userdoc
 
 # docker compose
 git clone https://github.com/docker/compose.git
@@ -29,7 +30,7 @@ apt-get -y install docker-compose docker-ce
 apt-get update -y
 apt autoremove -y
 
-# eth0 ip set in containers env var 
+# eth0 ip set in containers env var
 for file in sample/envs/.env*; do echo "IP = $(ip a s eth0 | awk '/inet / {print$2}' | cut -f1 -d\/)" >> "$file"; done
 
 # eth0 ip set in script.js code
@@ -46,3 +47,8 @@ node -v
 npm -v
 cat ./sample/envs/.env.db
 echo ================================   END   ================================
+
+chown -R userdoc:userdoc ./sample
+chmod +x ./sample
+su - userdoc
+exec bash
