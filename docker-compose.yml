@@ -43,7 +43,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '1'
+          cpus: '0,45'
           memory: 400M
     # networks:
     #   - back
@@ -85,7 +85,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.7'
+          cpus: '0.35'
           memory: 200M
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -d db -U root" ]

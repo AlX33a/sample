@@ -24,15 +24,6 @@ echo "const ip = \"$(ip a s eth0 | awk '/inet / {print$2}' | cut -f1 -d\/)\"" >>
 echo "const port = \"81\"" >> "sample/front/public/script.js";
 export IP=$(ip a s eth0 | awk '/inet / {print$2}' | cut -f1 -d\/)
 
-# useradd
-adduser userdoc
-usermod -aG docker userdoc
-chown -R userdoc:userdoc ./sample
-chmod +x ./sample
-su - userdoc
-export PATH=/home/$(whoami)/bin:$PATH
-export DOCKER_HOST=unix:///run/user/$(id -u)/docker.sock
-
 # docker compose
 git clone https://github.com/docker/compose.git
 INSTALL_PATH="/usr/local/bin/docker-compose"
