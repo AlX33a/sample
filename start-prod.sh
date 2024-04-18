@@ -5,12 +5,12 @@ apt-get update -y
 apt-get -y install git
 
 # docker root-less
-apt install -y dbus-user-session fuse-overlayfs
-apt remove docker docker-engine docker.io containerd runc
-apt update
-apt install docker-ce docker-ce-cli containerd.io
+apt-get update
+apt-get install -y dbus-user-session fuse-overlayfs
+apt-get remove -y docker docker-engine docker.io containerd runc
+apt-get install -y docker-ce docker-ce-cli containerd.io
 systemctl disable --now docker.service docker.socket
-curl -fsSL https://get.docker.com/rootless | sh
+curl -sSL https://get.docker.com/rootless | sh
 systemctl --user start docker
 systemctl --user enable docker
 loginctl enable-linger $(whoami)
