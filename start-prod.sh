@@ -4,13 +4,12 @@ echo ================================ START ================================
 apt-get update -y
 apt-get -y install git
 
-# docker root-less
-apt-get update
-apt-get install -y dbus-user-session fuse-overlayfs
-apt-get remove -y docker docker-engine docker.io containerd runc
-apt-get install -y docker-ce docker-ce-cli containerd.io
-systemctl disable --now docker.service docker.socket
-curl -sSL https://get.docker.com/rootless | sh
+# docker
+sudo apt install curl software-properties-common ca-certificates apt-transport-https -y
+wget -O- https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor | sudo tee /etc/apt/keyrings/docker.gpg > /dev/null
+echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu jammy stable"| sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt update -y
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 
 # update
 apt-get update -y
