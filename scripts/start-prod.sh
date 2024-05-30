@@ -13,7 +13,8 @@ sudo apt-get update -y
 sudo apt autoremove -y
 
 # docker mirror timeweb
-sudo echo "{ "registry-mirrors" : [ "https://dockerhub.timeweb.cloud" ] }" > /etc/docker/daemon.json
+sudo echo '{ "registry-mirrors" : [ "https://dockerhub.timeweb.cloud" ] }' > /etc/docker/daemon.json
+head -n 1 /etc/docker/daemon.json > /etc/docker/daemon.json
 sudo systemctl reload docker
 
 # add env vars
