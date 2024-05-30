@@ -1,7 +1,7 @@
 FROM python:3.11-slim-bookworm
 
 ARG APP_USER=app
-ARG APP_USER_UID=15096
+ARG APP_USER_UID=900
 ARG APP_USER_GID=$APP_USER_UID
 
 ENV APP_DIR=/app
@@ -19,7 +19,7 @@ COPY . "${APP_DIR}"
 RUN chmod +x "$APP_DIR" && \
 chown "$APP_USER_UID:$APP_USER_GID" -R "$APP_DIR"
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get -yq install nginx
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -yq install nginx
 COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
 
