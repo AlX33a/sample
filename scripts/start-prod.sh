@@ -17,7 +17,6 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 
 # docker mirror timeweb
 sudo echo '{ "registry-mirrors" : [ "https://dockerhub.timeweb.cloud" ] }' > /etc/docker/daemon.json
-head -n 1 /etc/docker/daemon.json > /etc/docker/daemon.json
 sudo systemctl reload docker
 
 # add env vars (eth0 ip set in containers env var)
