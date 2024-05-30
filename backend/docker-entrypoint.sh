@@ -14,6 +14,8 @@ python3 manage.py runserver 0.0.0.0:81
 
 elif [ "$ENVIRONMENT" = "PROD" ]; then
 
+service nginx start
+
 echo "Creating superuser from compose ENV vars"
 python3 manage.py createsuperuser --noinput --email admin@ad.min
 
@@ -22,6 +24,5 @@ python3 manage.py collectstatic --noinput
 
 echo "Running gunicorn"
 gunicorn --bind 0.0.0.0:8000 main.wsgi:application --timeout 10 --worker-class gthread --threads 1 --workers 4
-nginx -g daemon off
 
 fi

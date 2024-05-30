@@ -19,11 +19,9 @@ COPY . "${APP_DIR}"
 RUN chmod +x "$APP_DIR" && \
 chown "$APP_USER_UID:$APP_USER_GID" -R "$APP_DIR"
 
-RUN apt-get update -y && \
-apt-get install nginx-light -y 
-
-RUN mv ./app/nginx/default.conf /etc/nginx/conf.d/ && \
-mv ./app/nginx/nginx.conf /etc/nginx/
+RUN apt-get update && apt-get install -y nginx
+COPY ./app/nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY ./app/nginx/nginx.conf /etc/nginx/nginx.conf
 
 WORKDIR "${APP_DIR}"
 USER "${APP_USER}"
@@ -34,4 +32,5 @@ ENV PATH="./venv/bin:$PATH"
 RUN pip install --upgrade pip && \
     pip install -r ./requirements.txt
 
+EXPOSE 81
 ENTRYPOINT ["sh", "docker-entrypoint.sh"]
