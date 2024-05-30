@@ -19,7 +19,7 @@ COPY . "${APP_DIR}"
 RUN chmod +x "$APP_DIR" && \
 chown "$APP_USER_UID:$APP_USER_GID" -R "$APP_DIR"
 
-RUN apt-get update && apt-get install -y nginx
+RUN DEBIAN_FRONTEND=noninteractive apt-get -yq install nginx
 COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
 
