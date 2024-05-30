@@ -1,20 +1,19 @@
 #!/bin/sh
 echo ================================ START ================================
 
-apt-get update -y
-apt-get install git curl software-properties-common ca-certificates apt-transport-https -y
+sudo apt-get update -y
+sudo apt-get install git curl software-properties-common ca-certificates apt-transport-https -y
 
 # docker & docker compose
 sudo apt update -y
-sudo apt-get install docker -y
-sudo apt-get install docker-compose -y
+sudo apt-get install docker docker-compose -y
 
 # update
-apt-get update -y
-apt autoremove -y
+sudo apt-get update -y
+sudo apt autoremove -y
 
 # docker mirror timeweb
-echo "{ "registry-mirrors" : [ "https://dockerhub.timeweb.cloud" ] }" > /etc/docker/daemon.json
+sudo echo "{ "registry-mirrors" : [ "https://dockerhub.timeweb.cloud" ] }" > /etc/docker/daemon.json
 sudo systemctl reload docker
 
 # add env vars
