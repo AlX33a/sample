@@ -1,0 +1,32 @@
+export const BusStopGeoJson = {
+"type": "FeatureCollection",
+"name": "bus_stop",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "id": null, "code": 71, "name": "СК Екатеринодар", "photo_id": 1 }, "geometry": { "type": "Point", "coordinates": [ 39.034174, 45.069027 ] } },
+{ "type": "Feature", "properties": { "id": null, "code": 71, "name": "СК Екатеринодар", "photo_id": null }, "geometry": { "type": "Point", "coordinates": [ 39.034138, 45.068804 ] } },
+{ "type": "Feature", "properties": { "id": null, "code": 71, "name": "Героев Разведчиков", "photo_id": 2 }, "geometry": { "type": "Point", "coordinates": [ 39.032873, 45.065921 ] } },
+{ "type": "Feature", "properties": { "id": null, "code": 71, "name": "Героев Разведчиков", "photo_id": null }, "geometry": { "type": "Point", "coordinates": [ 39.033527, 45.065961 ] } },
+{ "type": "Feature", "properties": { "id": null, "code": 71, "name": "Черкасская", "photo_id": null }, "geometry": { "type": "Point", "coordinates": [ 39.034535, 45.06577 ] } },
+{ "type": "Feature", "properties": { "id": null, "code": 71, "name": "Магазин", "photo_id": 3 }, "geometry": { "type": "Point", "coordinates": [ 39.030827, 45.065856 ] } },
+{ "type": "Feature", "properties": { "id": null, "code": 71, "name": "Магазин", "photo_id": null }, "geometry": { "type": "Point", "coordinates": [ 39.029904, 45.065849 ] } },
+{ "type": "Feature", "properties": { "id": null, "code": 71, "name": "Черкасская", "photo_id": null }, "geometry": { "type": "Point", "coordinates": [ 39.035672, 45.065959 ] } },
+{ "type": "Feature", "properties": { "id": null, "code": 71, "name": "Микрорайон Губернский", "photo_id": null }, "geometry": { "type": "Point", "coordinates": [ 39.037082, 45.069102 ] } },
+{ "type": "Feature", "properties": { "id": null, "code": 71, "name": "Домбайская", "photo_id": null }, "geometry": { "type": "Point", "coordinates": [ 39.034303, 45.071832 ] } },
+{ "type": "Feature", "properties": { "id": null, "code": 71, "name": "Домбайская", "photo_id": null }, "geometry": { "type": "Point", "coordinates": [ 39.035606, 45.072128 ] } },
+{ "type": "Feature", "properties": { "id": null, "code": 71, "name": "им. Героя Яцкова", "photo_id": null }, "geometry": { "type": "Point", "coordinates": [ 39.040412, 45.069353 ] } },
+{ "type": "Feature", "properties": { "id": null, "code": 71, "name": "им. Героя Яцкова", "photo_id": null }, "geometry": { "type": "Point", "coordinates": [ 39.039883, 45.069128 ] } },
+{ "type": "Feature", "properties": { "id": null, "code": 71, "name": "Семигорская", "photo_id": null }, "geometry": { "type": "Point", "coordinates": [ 39.036231, 45.077907 ] } },
+{ "type": "Feature", "properties": { "id": null, "code": 71, "name": "Героя Аверкиева", "photo_id": null }, "geometry": { "type": "Point", "coordinates": [ 39.02528, 45.062038 ] } },
+{ "type": "Feature", "properties": { "id": null, "code": 71, "name": "Героя Аверкиева", "photo_id": null }, "geometry": { "type": "Point", "coordinates": [ 39.025241, 45.061618 ] } },
+{ "type": "Feature", "properties": { "id": null, "code": 71, "name": "Инсити", "photo_id": null }, "geometry": { "type": "Point", "coordinates": [ 39.034301, 45.088578 ] } },
+{ "type": "Feature", "properties": { "id": null, "code": 71, "name": "Командорская", "photo_id": null }, "geometry": { "type": "Point", "coordinates": [ 39.034737, 45.088557 ] } },
+{ "type": "Feature", "properties": { "id": null, "code": 71, "name": "Переяславская", "photo_id": null }, "geometry": { "type": "Point", "coordinates": [ 39.031516, 45.08854 ] } },
+{ "type": "Feature", "properties": { "id": null, "code": 71, "name": "Переяславская", "photo_id": null }, "geometry": { "type": "Point", "coordinates": [ 39.031124, 45.088574 ] } },
+{ "type": "Feature", "properties": { "id": null, "code": 71, "name": "Ивановская", "photo_id": null }, "geometry": { "type": "Point", "coordinates": [ 39.025659, 45.088497 ] } },
+{ "type": "Feature", "properties": { "id": null, "code": 71, "name": "Ивановская", "photo_id": null }, "geometry": { "type": "Point", "coordinates": [ 39.024787, 45.088528 ] } },
+{ "type": "Feature", "properties": { "id": null, "code": 71, "name": "Лента", "photo_id": null }, "geometry": { "type": "Point", "coordinates": [ 39.01432, 45.087365 ] } },
+{ "type": "Feature", "properties": { "id": null, "code": 71, "name": "Гаражный пер.", "photo_id": null }, "geometry": { "type": "Point", "coordinates": [ 39.014636, 45.085309 ] } },
+{ "type": "Feature", "properties": { "id": null, "code": 71, "name": "Гаражный пер.", "photo_id": null }, "geometry": { "type": "Point", "coordinates": [ 39.016042, 45.08485 ] } }
+]
+}

@@ -1,0 +1,64 @@
+version: '3.9'
+# add replications and fix networks, bunkerized nginx (unkerity/bunkerized-nginx)
+# https://github.com/bunkerity/bunkerweb/blob/master/examples/load-balancer/docker-compose.yml
+services:
+
+  backend:
+    image: backend
+    build: "../backend"
+    container_name: backend
+    ports:
+      - 81:81
+    env_file: ../envs/.env.backend-prod
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: '0,50'
+          memory: 500M
+
+  frontend:
+    image: frontend
+    build:
+      context: "../frontend"
+      target: public
+    container_name: frontend
+    ports:
+      - 80:80
+    env_file: ./envs/.env.frontend-prod
+    restart: always
+    depends_on:
+     - nginx
+    deploy:
+      resources:
+        limits:
+          cpus: '0.05'
+          memory: 100M
+
+  db:
+    image: postgres:16
+    container_name: db
+    ports:
+      - 5432:5432
+    env_file: ../envs/.env.db
+    environment:
+      POSTGRES_DB: "db"
+      POSTGRES_USER: "root"
+      POSTGRES_PASSWORD: "root"
+    volumes:
+      - type: volume
+        source: pgdata
+        target: /var/lib/postgresql/data
+    deploy:
+      resources:
+        limits:
+          cpus: '0.35'
+          memory: 200M
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -d db -U root" ]
+
+volumes:
+  pgdata:

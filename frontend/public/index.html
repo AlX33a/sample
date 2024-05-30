@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8">
+		<title>Web map</title>
+
+		<script src = "https://api-maps.yandex.ru/2.1/?lang=ru-RU"></script>
+
+		<script src = "./libs/leaflet/leaflet.js"></script>
+		<script src = "./libs/leaflet/Yandex.js"></script>
+		<script src = "./libs/leaflet/leaflet-measure.min.js"></script>
+		<script src="libs/leaflet.draw/leaflet.draw.js"></script>
+
+		<link rel = "stylesheet" href = "./libs/leaflet/leaflet.css"/>
+		<link rel = "stylesheet" href = "./libs/leaflet/leaflet-measure.css"/>
+		<link rel="stylesheet" href="libs/leaflet.draw/leaflet.draw.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+		<style>
+			html, body,
+			#map{
+				height: 100%;
+				width: 100%;
+				margin: 0
+			}
+			.lgndPanel{
+				background: rgba(255,255,255,0.8);
+				padding: 8px;
+				border-radius: 5px;
+			}
+		</style>
+
+	</head>
+	<body>
+		<div id="header"></div>
+		<!-- Контейнер для карты -->
+		<!-- ID 'map' используется для инициализации и отображения карты -->
+		<!-- с помощью Leaflet JS -->
+		<div id = "map"></div>
+
+		<script type="module" src="./libs/main.js"></script>
+	</body>
+</html>
