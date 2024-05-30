@@ -6,7 +6,7 @@ apt-get install git curl software-properties-common ca-certificates apt-transpor
 
 # docker & docker compose
 sudo apt update -y
-sudo apt-get install docker.io -y
+sudo apt-get install docker -y
 sudo apt-get install docker-compose -y
 
 # update
