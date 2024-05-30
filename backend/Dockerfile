@@ -22,8 +22,8 @@ chown "$APP_USER_UID:$APP_USER_GID" -R "$APP_DIR"
 RUN apt-get update -y && \
 apt-get install nginx-light -y 
 
-RUN mv ./nginx/default.conf /etc/nginx/conf.d/ && \
-mv ./nginx/nginx.conf /etc/nginx/
+RUN mv ./app/nginx/default.conf /etc/nginx/conf.d/ && \
+mv ./app/nginx/nginx.conf /etc/nginx/
 
 WORKDIR "${APP_DIR}"
 USER "${APP_USER}"
