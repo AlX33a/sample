@@ -4,6 +4,9 @@ echo ================================ START ================================
 sudo apt-get update
 sudo apt-get install docker docker-compose
 
+wget https://download.docker.com/linux/ubuntu/dists/jammy/pool/stable/amd64/docker-buildx-plugin_0.14.0-1~ubuntu.22.04~jammy_amd64.deb
+sudo dpkg -i docker-buildx-plugin_0.14.0-1~ubuntu.22.04~jammy_amd64.deb
+
 # docker mirror timeweb
 sudo echo '{ "registry-mirrors" : [ "https://dockerhub.timeweb.cloud" ] }' > /etc/docker/daemon.json
 sudo systemctl reload docker

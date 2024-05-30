@@ -20,8 +20,8 @@ RUN chmod +x "$APP_DIR" && \
 chown "$APP_USER_UID:$APP_USER_GID" -R "$APP_DIR"
 
 RUN apt-get update && apt-get install -y nginx
-COPY ./app/nginx/default.conf /etc/nginx/conf.d/default.conf
-COPY ./app/nginx/nginx.conf /etc/nginx/nginx.conf
+COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
 
 WORKDIR "${APP_DIR}"
 USER "${APP_USER}"
