@@ -1,3 +1,10 @@
+FROM nginx:1.25
+
+COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
+
+
+
 FROM python:3.11-slim-bookworm
 
 ARG APP_USER=app
@@ -18,10 +25,6 @@ COPY . "${APP_DIR}"
 
 RUN chmod +x "$APP_DIR" && \
 chown "$APP_USER_UID:$APP_USER_GID" -R "$APP_DIR"
-
-RUN apt-get update && apt-get install apt-utils && DEBIAN_FRONTEND=noninteractive apt-get -yq install nginx
-COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
-COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
 
 WORKDIR "${APP_DIR}"
 USER "${APP_USER}"
