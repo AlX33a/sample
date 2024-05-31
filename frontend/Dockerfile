@@ -13,7 +13,7 @@ COPY . ./
 
 
 
-FROM nginx:1.25 as public
+FROM nginx:1.27 as public
 
 WORKDIR /app
 COPY --from=app /app/public /usr/share/nginx/html
