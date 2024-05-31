@@ -8,8 +8,8 @@ services:
     build: "../backend"
     container_name: backend
     ports:
-      - 81:81
-    env_file: ../envs/.env.backend-prod
+      - 8000:8000
+    env_file: ../envs/.env.backend
     restart: always
     depends_on:
       db:
@@ -51,7 +51,7 @@ services:
     container_name: frontend
     ports:
       - 80:80
-    env_file: ../envs/.env.frontend-prod
+    env_file: ../envs/.env.frontend
     restart: always
     depends_on:
      - backend
