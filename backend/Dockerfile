@@ -1,8 +1,3 @@
-FROM nginx:1.25
-
-COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
-COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
-
 FROM python:3.11-slim-bookworm
 
 ARG APP_USER=app
@@ -33,5 +28,4 @@ ENV PATH="./venv/bin:$PATH"
 RUN pip install --upgrade pip && \
     pip install -r ./requirements.txt
 
-EXPOSE 81
 ENTRYPOINT ["sh", "docker-entrypoint.sh"]

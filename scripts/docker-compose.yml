@@ -21,7 +21,7 @@ services:
           memory: 200M
 
   nginx:
-    image: nginx:1.25
+    image: nginx:1.27
     container_name: nginx
     volumes:
       - type: bind
