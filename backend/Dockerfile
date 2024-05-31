@@ -3,7 +3,7 @@ FROM nginx:1.25
 COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
 
-
+CMD ["nginx", "-g", "daemon off;"]
 
 FROM python:3.11-slim-bookworm
 
