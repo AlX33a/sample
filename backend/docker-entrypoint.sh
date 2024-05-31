@@ -14,7 +14,7 @@ python3 manage.py runserver 0.0.0.0:81
 
 elif [ "$ENVIRONMENT" = "PROD" ]; then
 
-service nginx start
+nginx -g daemon off
 
 echo "Creating superuser from compose ENV vars"
 python3 manage.py createsuperuser --noinput --email admin@ad.min

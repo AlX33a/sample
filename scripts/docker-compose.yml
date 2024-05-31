@@ -17,8 +17,31 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.5'
-          memory: 300M
+          cpus: '0.4'
+          memory: 200M
+
+  nginx:
+    image: nginx:1.25
+    container_name: nginx
+    volumes:
+      - type: bind
+        source: ../backend/nginx/default.conf
+        target: /etc/nginx/conf.d/default.conf
+        read_only: true
+      - type: bind
+        source: ../backend/nginx/nginx.conf
+        target: /etc/nginx/nginx.conf
+        read_only: true
+    restart: always
+    depends_on:
+      - main
+    ports:
+      - 81:81
+    deploy:
+      resources:
+        limits:
+          cpus: '0.05'
+          memory: 100M
 
   frontend:
     image: frontend
