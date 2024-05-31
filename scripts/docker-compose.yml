@@ -34,7 +34,7 @@ services:
         read_only: true
     restart: always
     depends_on:
-     - backend
+     - frontend
     ports:
       - 81:81
     deploy:
